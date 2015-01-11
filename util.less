@@ -1,0 +1,212 @@
+/*====== Mixins ======*/
+.pad0-15(){
+    padding:0 15px;
+}
+.posre(){
+    position:relative;
+}
+.posab(){
+    position:absolute;
+}
+.disb(){
+    display:block;
+}
+.disib(){
+    display:inline-block;
+}
+.disi(){
+    display:inline;
+}
+.disn(){
+    display:none;
+}
+.flolf(){
+    float:left;
+}
+.flort(){
+    float:right;
+}
+.h-auto-over(){
+    height:auto;
+    overflow:hidden;
+}
+.w-full{
+    width:100%;
+}
+.w-responsive{
+    max-width:100%;
+    width:auto;
+}
+.h-full{
+    height:100%;
+}
+.ma-auto{
+    margin-left:auto;
+    margin-right:auto;
+}
+.mpb-0(){
+    margin:0;
+    padding:0;
+}
+.tl-0{
+    top:0;
+    left:0;
+}
+
+.t-center(){
+    text-align:center;
+}
+.t-left(){
+    text-align:left;
+}
+.t-right(){
+    text-align:right;
+}
+.text-ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.f-bold{
+    font-weight:bold;
+}
+.pd-l-0{
+    padding-left:0;
+}
+
+.ul-reset(){
+    list-style:none;
+    li{
+        list-style:none;
+    }
+}
+
+
+/*========================= Util ===========================*/
+
+.br-loop(@i:5) when(@i<=100){
+    .br-@{i}{
+        height:@i*1px;
+    }
+    .br-loop(@i+5);
+}
+
+.br-loop();
+
+.fsize-loop(@i:12) when(@i<=60){
+    .fsize-@{i}{
+        font-size:@i*1px;
+    }
+    .fsize-loop(@i+2);
+}
+
+.fsize-loop();
+
+
+.bg-size (...) {
+    -webkit-background-size: @arguments;
+       -moz-background-size: @arguments;
+         -o-background-size: @arguments;
+        -ms-background-size: @arguments;
+            background-size: @arguments;
+}
+.bd-radius (...) {
+    -webkit-border-radius: @arguments;
+       -moz-border-radius: @arguments;
+         -o-border-radius: @arguments;
+        -ms-border-radius: @arguments;
+            border-radius: @arguments;
+}
+
+.placeholder-color(@color){
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color: @color;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: @color;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: @color;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: @color;
+    }
+}
+
+.tap-color(...){
+    -webkit-tap-highlight-color: @arguments;
+    -moz-tap-highlight-color:    @arguments;
+    -ms-tap-highlight-color:     @arguments;
+    -o-tap-highlight-color:      @arguments;
+    tap-highlight-color:         @arguments;
+}
+
+/*=============== Animation ===============*/
+
+.transition (...) {
+    -webkit-transition: @arguments;
+    -moz-transition:    @arguments;
+    -o-transition:      @arguments;
+    -ms-transition:     @arguments;
+    transition:         @arguments;
+}
+
+.animation (...) {
+    -webkit-animation: @arguments;
+    -moz-animation:    @arguments;
+    -ms-animation:     @arguments;
+    -o-animation:      @arguments;
+    animation:         @arguments;
+}
+
+.transform (...) {
+    -webkit-transform: @arguments;
+    -moz-transform:    @arguments;
+    -ms-transform:     @arguments;
+    -o-transform:      @arguments;
+    transform:         @arguments;
+}
+
+.transform-origin (...) {
+    -webkit-transform-origin: @arguments;
+    -moz-transform-origin:    @arguments;
+    -ms-transform-origin:     @arguments;
+    -o-transform-origin:      @arguments;
+    transform-origin:         @arguments;
+}
+
+/*=============== Keyframes ===============*/
+#doKeyFrames(@name; @frames) {
+    @-webkit-keyframes @name {
+      @vendor: -webkit-;
+      @frames(); 
+    }
+    @-moz-keyframes @name {
+      @vendor: -moz-;
+      @frames(); 
+    }
+    @-o-keyframes @name {
+      @vendor: -o-;
+      @frames(); 
+    } 
+    @keyframes @name {
+      @vendor: ~'';
+      @frames(); 
+    }
+}
+
+#rotate(@deg){
+    @{vendor}transform: rotate(@deg);
+}
+/*
+@myShake:{
+  0%  { #rotate(0deg); }
+  25% { #rotate(10deg); } 
+  50% { #rotate(-10deg);}
+  75% { #rotate(6deg); }
+  100%{ #rotate(0deg); }
+};
+#doKeyFrames(shake; @myShake);
+*/
+
