@@ -1,7 +1,4 @@
 /*====== Mixins ======*/
-.pad0-15(){
-    padding:0 15px;
-}
 .posre(){
     position:relative;
 }
@@ -30,27 +27,33 @@
     height:auto;
     overflow:hidden;
 }
-.w-full{
+.w-full(){
     width:100%;
 }
-.w-responsive{
+.w-responsive(){
     max-width:100%;
     width:auto;
 }
-.h-full{
+.h-full(){
     height:100%;
 }
-.ma-auto{
+.ma-auto(){
     margin-left:auto;
     margin-right:auto;
 }
 .mpb-0(){
     margin:0;
     padding:0;
+    border:0;
 }
-.tl-0{
+.abs-full(){
     top:0;
     left:0;
+    .h-full;
+    .w-full;
+}
+.pad0-15(){
+    padding:0 15px;
 }
 
 .t-center(){
@@ -62,19 +65,10 @@
 .t-right(){
     text-align:right;
 }
-.text-ellipsis{
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
 
-.f-bold{
+.f-bold(){
     font-weight:bold;
 }
-.pd-l-0{
-    padding-left:0;
-}
-
 .ul-reset(){
     list-style:none;
     li{
@@ -82,27 +76,36 @@
     }
 }
 
+/*==================== Classes ====================*/
+.text-ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 /*========================= Util ===========================*/
 
-.br-loop(@i:5) when(@i<=100){
-    .br-@{i}{
-        height:@i*1px;
+.br-loop(@end:100,@start:5,@step:5) when(@start<=@end){
+    .br-@{start}{
+        height:@start*1px;
     }
-    .br-loop(@i+5);
+    .br-loop(@end,@start+@step,@step);
 }
 
-.br-loop();
+/*
+.br-loop(50,10);
+*/
 
-.fsize-loop(@i:12) when(@i<=60){
-    .fsize-@{i}{
-        font-size:@i*1px;
+.fsize-loop(@max:60,@start:12,@step:2) when(@start<=@max){
+    .fsize-@{start}{
+        font-size:@start*1px;
     }
-    .fsize-loop(@i+2);
+    .fsize-loop(@max,@start+@step,@step);
 }
 
-.fsize-loop();
-
+/*
+.fsize-loop(20,14);
+*/
 
 .bg-size (...) {
     -webkit-background-size: @arguments;
@@ -199,13 +202,11 @@
 #rotate(@deg){
     @{vendor}transform: rotate(@deg);
 }
+
 /*
 @myShake:{
   0%  { #rotate(0deg); }
-  25% { #rotate(10deg); } 
-  50% { #rotate(-10deg);}
-  75% { #rotate(6deg); }
-  100%{ #rotate(0deg); }
+  100%{ #rotate(100deg); }
 };
 #doKeyFrames(shake; @myShake);
 */
