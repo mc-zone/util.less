@@ -78,12 +78,12 @@
 
 /*==================== Classes ====================*/
 .text-ellipsis{
-    overflow: hidden;
-    white-space: nowrap;
+    overflow:      hidden;
+    white-space:   nowrap;
     text-overflow: ellipsis;
 }
 
-/*========================= Util ===========================*/
+/*========================= Util FUnctions ===========================*/
 
 .br-loop(@end:100,@start:5,@step:5) when(@start<=@end){
     .br-@{start}{
@@ -109,17 +109,17 @@
 
 .bg-size (...) {
     -webkit-background-size: @arguments;
-       -moz-background-size: @arguments;
-         -o-background-size: @arguments;
-        -ms-background-size: @arguments;
-            background-size: @arguments;
+    -moz-background-size:    @arguments;
+    -ms-background-size:     @arguments;
+    -o-background-size:      @arguments;
+    background-size:         @arguments;
 }
 .bd-radius (...) {
     -webkit-border-radius: @arguments;
-       -moz-border-radius: @arguments;
-         -o-border-radius: @arguments;
-        -ms-border-radius: @arguments;
-            border-radius: @arguments;
+    -moz-border-radius:    @arguments;
+    -ms-border-radius:     @arguments;
+    -o-border-radius:      @arguments;
+    border-radius:         @arguments;
 }
 
 .placeholder-color(@color){
@@ -145,8 +145,6 @@
     tap-highlight-color:         @arguments;
 }
 
-/*=============== Animation ===============*/
-
 .transition (...) {
     -webkit-transition: @arguments;
     -moz-transition:    @arguments;
@@ -156,6 +154,13 @@
 }
 
 .animation (...) {
+    -webkit-animation: @arguments;
+    -moz-animation:    @arguments;
+    -ms-animation:     @arguments;
+    -o-animation:      @arguments;
+    animation:         @arguments;
+}
+.animation-delay (...) {
     -webkit-animation: @arguments;
     -moz-animation:    @arguments;
     -ms-animation:     @arguments;
@@ -179,7 +184,9 @@
     transform-origin:         @arguments;
 }
 
-/*=============== Keyframes ===============*/
+/*
+ * Keyframes
+ */
 #doKeyFrames(@name; @frames) {
     @-webkit-keyframes @name {
       @vendor: -webkit-;
@@ -199,11 +206,10 @@
     }
 }
 
+/*
 #rotate(@deg){
     @{vendor}transform: rotate(@deg);
 }
-
-/*
 @myShake:{
   0%  { #rotate(0deg); }
   100%{ #rotate(100deg); }
